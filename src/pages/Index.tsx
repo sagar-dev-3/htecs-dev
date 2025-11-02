@@ -114,7 +114,7 @@ const Index = () => {
       {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+          isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background/95 backdrop-blur-md shadow-lg"
         }`}
       >
         <div className="container mx-auto px-4">
@@ -217,7 +217,7 @@ const Index = () => {
               >
                 Your Trusted
                 <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Financial Partner
+                  business consultants
                 </span>
               </motion.h1>
               <motion.p
@@ -439,7 +439,7 @@ const Index = () => {
                 </div>
               </div>
               <p className="text-muted-foreground text-sm">
-                Your trusted partner for comprehensive financial and business advisory services.
+                Your trusted business Consultants.
               </p>
             </div>
 
