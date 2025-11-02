@@ -16,10 +16,11 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#about", label: "About Us" },
-    { href: "#why-choose-us", label: "Why Choose Us" },
-    { href: "#contact", label: "Contact" },
+    { href: "services", label: "Services" },
+    { href: "about", label: "About Us" },
+    { href: "why-choose-us", label: "Why Choose Us" },
+    { href: "pricing", label: "Pricing" },
+    { href: "contact", label: "Contact" },
   ];
 
   return (

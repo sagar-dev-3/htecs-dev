@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
               />
             </div>
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent rounded-3xl opacity-20"></div>
-            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-primary rounded-3xl opacity-20"></div>
+            {/* <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-primary rounded-3xl opacity-20"></div> */}
           </motion.div>
         </div>
       </div>

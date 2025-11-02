@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import logo from "@/assets/logo.png";
 import heroImage from "@/assets/hero-business.jpg";
 import accountingImage from "@/assets/accounting-desk.jpg";
+import PricingTemplate from "@/components/Pricing";
 
 const Index = () => {
   // Navigation state
@@ -43,10 +44,11 @@ const Index = () => {
 
   // Navigation links
   const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#about", label: "About Us" },
-    { href: "#why-choose-us", label: "Why Choose Us" },
-    { href: "#contact", label: "Contact" },
+    { href: "services", label: "Services" },
+    { href: "about", label: "About Us" },
+    { href: "why-choose-us", label: "Why Choose Us" },
+    { href: "pricing", label: "Pricing" },
+    { href: "contact", label: "Contact" },
   ];
 
   // Services data
@@ -132,8 +134,15 @@ const Index = () => {
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={`#${link.href}`}
                   className="text-foreground hover:text-primary transition-colors font-medium"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(link.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                 >
                   {link.label}
                 </a>
@@ -167,9 +176,16 @@ const Index = () => {
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
-                    href={link.href}
+                    href={`#${link.href}`}
                     className="text-foreground hover:text-primary transition-colors font-medium py-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                        setIsMobileMenuOpen(false);
+                      }
+                    }}
                   >
                     {link.label}
                   </a>
@@ -373,6 +389,14 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/*pricing Section*/}
+      <section id="pricing" className="bg-background">
+        <div className="container mx-auto px-4">
+          <PricingTemplate></PricingTemplate>
+        </div>
+      </section>
+
 
       {/* CTA Section */}
       <section id="contact" className="py-24 bg-gradient-to-r from-primary to-accent text-primary-foreground">
