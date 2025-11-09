@@ -1,9 +1,9 @@
 {
-  "name": "htecs",
+  "name": "htecs_dev",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://abhinav6174.github.io/htecs",
+ 
   "scripts": {
     "dev": "vite",
     "build": "vite build",
