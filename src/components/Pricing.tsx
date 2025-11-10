@@ -73,49 +73,33 @@ const PricingTemplate = () => {
   const plans = [
     {
       plan: 'Starter',
-      price: billingPeriod === 'monthly' ? '29' : '290',
+      price: billingPeriod === 'monthly' ? '500' : '6000',
       period: billingPeriod === 'monthly' ? 'mo' : 'yr',
       description: 'Perfect for individuals and small projects',
       icon: Zap,
       features: [
-        'Up to 5 projects',
-        '10 GB storage',
-        'Basic analytics',
-        'Email support',
-        'Community access'
+        '1 Project'
       ]
     },
     {
       plan: 'Professional',
-      price: billingPeriod === 'monthly' ? '79' : '790',
+      price: billingPeriod === 'monthly' ? '1200' : '12000',
       period: billingPeriod === 'monthly' ? 'mo' : 'yr',
       description: 'Ideal for growing teams and businesses',
       icon: Crown,
       highlighted: true,
       features: [
-        'Unlimited projects',
-        '100 GB storage',
-        'Advanced analytics',
-        'Priority support',
-        'Custom integrations',
-        'Team collaboration',
-        'API access'
+        '2 Projects'
       ]
     },
     {
       plan: 'Enterprise',
-      price: billingPeriod === 'monthly' ? '199' : '1990',
+      price: billingPeriod === 'monthly' ? '2500' : '25000',
       period: billingPeriod === 'monthly' ? 'mo' : 'yr',
       description: 'For large organizations with advanced needs',
       icon: Rocket,
       features: [
-        'Everything in Professional',
-        'Unlimited storage',
-        'White-label solution',
-        'Dedicated support',
-        'Custom SLA',
-        'Advanced security',
-        'On-premise deployment'
+        '3 Projects'
       ]
     }
   ];

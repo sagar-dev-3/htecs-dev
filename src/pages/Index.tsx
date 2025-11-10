@@ -54,29 +54,19 @@ const Index = () => {
   // Services data
   const services = [
     {
-      icon: "💼",
-      title: "Business Advisory",
-      description: "Strategic guidance to help your business grow and navigate complex challenges with confidence.",
+      icon: "📈",
+      title: "General Trading",
+      description: "textiles clothes an accessories.",
     },
     {
       icon: "🧮",
-      title: "Taxation Services",
-      description: "Comprehensive tax planning and compliance solutions to optimize your tax position.",
+      title: "Service brokerage",
+      description: "Service brokerage in mortgage loan rent services property dealings and other project financing.",
     },
     {
       icon: "📚",
-      title: "Bookkeeping & Accounting",
-      description: "Accurate financial records and reports to keep your business running smoothly.",
-    },
-    {
-      icon: "🛡️",
-      title: "Auditing & Assurance",
-      description: "Independent verification and risk assessment to ensure financial integrity.",
-    },
-    {
-      icon: "📈",
-      title: "IFRS Advisory",
-      description: "Expert guidance on international financial reporting standards and compliance.",
+      title: "Accounting and financial services",
+      description: "Book keeping service tax filing financial reporting Audit services.",
     },
   ];
 
@@ -471,7 +461,8 @@ const Index = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-lg">📞</span>
-                  <span className="text-sm">+971 XX XXX XXXX</span>
+                  <span className="text-sm">+971 54 462 0678,</span>
+                  <span className="text-sm">+971 54 382 7791</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-lg">📍</span>
