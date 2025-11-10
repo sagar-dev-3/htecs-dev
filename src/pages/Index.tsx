@@ -436,10 +436,9 @@ const Index = () => {
             <div>
               <h4 className="font-semibold text-foreground mb-4">Services</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#services" className="hover:text-primary transition-colors">Business Advisory</a></li>
-                <li><a href="#services" className="hover:text-primary transition-colors">Taxation Services</a></li>
-                <li><a href="#services" className="hover:text-primary transition-colors">Bookkeeping</a></li>
-                <li><a href="#services" className="hover:text-primary transition-colors">Auditing</a></li>
+                <li><a href="#services" className="hover:text-primary transition-colors">General Trading</a></li>
+                <li><a href="#services" className="hover:text-primary transition-colors">Service brokerage</a></li>
+                <li><a href="#services" className="hover:text-primary transition-colors">Accounting & Financial services</a></li>
               </ul>
             </div>
 
