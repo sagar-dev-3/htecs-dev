@@ -97,11 +97,11 @@ const Index = () => {
   const servicesInView = useInView(servicesRef, { once: true, margin: "-100px" });
   const statsInView = useInView(statsRef, { once: true });
   const whyChooseUsInView = useInView(whyChooseUsRef, { once: true, margin: "-100px" });
-  const ctaInView = useInView(ctaRef, { once: true });
+  const ctaInView = useInView(ctaRef, { once: true }); 
 
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
+      {/* Navigation*/}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 h-[13rem] transition-all duration-300 ${
           isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background/95 backdrop-blur-md shadow-lg"
