@@ -46,28 +46,34 @@ const Index = () => {
   const navLinks = [
     { href: "services", label: "Services" },
     { href: "about", label: "About Us" },
-    { href: "why-choose-us", label: "Why Choose Us" },
-    { href: "pricing", label: "Pricing" },
+    // { href: "why-choose-us", label: "Why Choose Us" },
+    // { href: "pricing", label: "Pricing" },
     { href: "contact", label: "Contact" },
   ];
 
   // Services data
   const services = [
-    {
-      icon: "📈",
-      title: "General Trading",
-      description: "textiles clothes an accessories.",
-    },
+    
     {
       icon: "🧮",
       title: "Service brokerage",
       description: "Service brokerage in mortgage loan rent services property dealings and other project financing.",
     },
     {
+      icon: "🛡️",
+      title: "Auditing & Assurance",
+      description: "Independent verification and risk assessment to ensure financial integrity.",
+    },
+    {
       icon: "📚",
-      title: "Accounting and financial services",
+      title: "Accounting & financial services",
       description: "Book keeping service tax filing financial reporting Audit services.",
     },
+    {
+      icon: "📈",
+      title: "General Trading",
+      description: "textiles clothes an accessories.",
+    }
   ];
 
   // Stats data
@@ -103,22 +109,22 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Navigation*/}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 h-[13rem] transition-all duration-300 ${
+        className={`fixed top-0 -left-2 right-0 z-50 h-[10rem] transition-all duration-300 ${
           isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background/95 backdrop-blur-md shadow-lg"
         }`}
       >
         <div className="container mx-auto px-4 h-full">
           <div className="flex items-center justify-between h-full">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="HTECS Logo" className="h-[13rem] w-[13rem] object-contain block" />
+              <img src={logo} alt="HTECS Logo" className="h-[10rem] w-[10rem] object-contain block" />
               <div className="flex flex-col justify-center">
-                <h1 className="text-lg font-bold text-foreground leading-tight m-0">
+                <h1 className="text-3xl font-bold text-foreground leading-tight m-0">
                   Hill Top Emerging
                 </h1>
-                <p className="text-sm text-muted-foreground m-0">Consultancy Services FZC</p>
+                <p className="text-1xl text-muted-foreground m-0">Consultancy Services FZC</p>
               </div>
             </div>
-
+                  {/* tool color hsl(22.15deg 72.56% 65.57% / 90%) */}
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8 h-full">
               {navLinks.map((link) => (
@@ -326,7 +332,7 @@ const Index = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-choose-us" className="py-24 bg-background">
+      {/* <section id="why-choose-us" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -378,7 +384,7 @@ const Index = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/*pricing Section*/}
       <section id="pricing" className="bg-background">
