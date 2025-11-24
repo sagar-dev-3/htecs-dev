@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import Navigation from '@/pages/Navigation';
 import { Link } from "react-router-dom";
 import { CheckCircle, Zap } from 'lucide-react'; // Added imports for better visuals
-
+import '@/styles/Breadcrumb.css'; // Importing breadcrumb styles
 const WebDesign = () => {
   // Corrected the content and enhanced design for mobile/web responsiveness
   return (
@@ -16,21 +16,29 @@ const WebDesign = () => {
           {/* Header Section - Enhanced Responsiveness and Clarity */}
           <div className="text-center md:text-left">
         {/* The muted "Service >>" prefix, acting as a sub-header */}
-            <p className="text-sm font-semibold mb-2 uppercase tracking-wider">
-                {/* 1. The Service Link (goes to the Services section on the Home page) */}
-                <Link 
-                    to="/" 
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                    Service
-                </Link>                {/* 2. The separator */}
-                <span className="text-primary mx-2">&gt;&gt;</span>
-                
-                {/* 3. The Current Page (Styled as the main title color) */}
-                <span className="text-primary">
-                    Auditing & Assurance
-                </span>
-            </p>
+             {/* Breadcrumb Section - Redesigned to match the checkout progress arrow style */}
+                 <div className="mb-12">
+                  <nav aria-label="Checkout Progress" className="breadcrumb-container">
+                   <ol className="breadcrumb-list">
+                    {/* Step 1: Cart (Completed) */}
+                    <li className="breadcrumb-item">
+                     <Link to="/" className="breadcrumb-link">
+                      <CheckCircle className="breadcrumb-icon" />
+                      Service
+                     </Link>
+                    </li>
+                    
+                    {/* Step 2: Payment (Current Page) */}
+                    <li className="breadcrumb-item current-page">
+                     <span aria-current="page" className="breadcrumb-link">
+                      <CheckCircle className="breadcrumb-icon" /> {/* The checkmark is present in the image */}
+                      Accounting & Assurance
+                     </span>
+                    </li>
+                   </ol>
+                  </nav>
+              </div>
+            
 
         <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-4">
             Auditing & Assurance

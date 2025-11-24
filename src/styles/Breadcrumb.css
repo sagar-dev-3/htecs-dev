@@ -1,0 +1,102 @@
+/* Breadcrumb.css - Optimized to fix the white arrow tail mismatch */
+
+:root {
+    --step-color: #c57647; /* Primary color for steps (Cart, Billing, Shipping) */
+    --current-color: #d98b5d; /* Slightly lighter/different shade for the current step (Payment) */
+    --text-color: #fff; /* White text on the colored background */
+    --icon-color: #fcfcfc; /* Light green/mint color for the CheckCircle icon */
+    --arrow-cutout-width: 9px; /* DECREASED WIDTH for a smaller white arrow/cutout */
+}
+
+.breadcrumb-container {
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* Adjusted padding to accommodate the smaller, cleaner cutout */
+    padding: 10px 20px 10px calc(20px + var(--arrow-cutout-width)); 
+    background-color: var(--step-color);
+    /* Adjusted margin to match the cutout width */
+    margin-right: calc(-1 * var(--arrow-cutout-width)); 
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Arrowhead on the right */
+.breadcrumb-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: calc(-1 * var(--arrow-cutout-width)); 
+    width: var(--arrow-cutout-width);
+    height: 100%;
+    /* Creates a triangular cut-out pointing right */
+    background: inherit; /* Inherits the background color of the list item */
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    z-index: 1; 
+}
+
+/* Arrow tail on the left - FIX: Using calc() and variables for precision */
+.breadcrumb-item:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--arrow-cutout-width);
+    height: 100%;
+    /* Creates a triangular cut-in pointing left */
+    background: #fff; /* Assumes parent container is white */
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+    z-index: 2; 
+}
+
+/* --- STYLING FOR THE LAST ITEM --- */
+.breadcrumb-item:last-child {
+    /* Set margin-right to 0 */
+    margin-right: 0; 
+    /* Add padding to the right equal to the arrowhead's width */
+    padding-right: calc(20px + var(--arrow-cutout-width)); 
+}
+
+/* 1. Styling for Completed Steps (using the base step-color) */
+.breadcrumb-item:not(.current-page) {
+    background-color: var(--step-color);
+}
+.breadcrumb-item:not(.current-page) .breadcrumb-icon {
+    color: var(--icon-color); /* Light green checkmark */
+}
+
+/* 2. Styling for the Current Step (Payment) */
+.breadcrumb-item.current-page {
+    background-color: var(--current-color); /* Different shade for the current step */
+}
+
+/* Link/Text styling */
+.breadcrumb-link {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Spacing between icon and text */
+    position: relative;
+    z-index: 3; 
+}
+
+/* Icon (Checkmark) styling */
+.breadcrumb-icon {
+    width: 18px;
+    height: 18px;
+}

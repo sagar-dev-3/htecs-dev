@@ -33,8 +33,8 @@ const Navigation = () => {
         { href: "/accounting-financial-services", label: "Accounting & Financial Services" },
        ],
       },
-      { href: "about", label: "About Us" },
-      { href: "contact", label: "Contact" },
+      { href: "/about", label: "About Us" },
+      { href: "/contact", label: "Contact" },
     ];
 
   return (

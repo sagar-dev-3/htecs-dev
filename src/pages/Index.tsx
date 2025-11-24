@@ -56,8 +56,8 @@ const Index = () => {
        
        ],
       },
-      { href: "about", label: "About Us" },
-      { href: "contact", label: "Contact" },
+      { href: "/about", label: "About Us" },
+      { href: "/contact", label: "Contact" },
     ];
   
     // ... (Rest of your component's constants and refs)
