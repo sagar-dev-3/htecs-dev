@@ -3,44 +3,49 @@ import Footer from '@/components/Footer';
 import Navigation from '@/pages/Navigation';
 import { Link } from "react-router-dom";
 import { CheckCircle, Zap } from 'lucide-react'; // Added imports for better visuals
-import '@/styles/Breadcrumb.css'; // Importing breadcrumb styles
+import '@/styles/Breadcrumb.css';
+
 const WebDesign = () => {
-  // Corrected the content and enhanced design for mobile/web responsiveness
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation /> 
 
-      <main className="flex-grow pt-[10rem] sm:pt-[12rem] pb-20 bg-background">
-        <div className="container mx-auto px-4">
+      <main className="flex-grow pt-[8rem] sm:pt-[10rem] pb-10 sm:pb-14 bg-background">
+        <div className="container mx-auto px-3 sm:px-4">
           
-          {/* Header Section - Enhanced Responsiveness and Clarity */}
+          {/* Header Section */}
           <div className="text-center md:text-left">
-        {/* The muted "Service >>" prefix, acting as a sub-header */}
-             {/* Breadcrumb Section - Redesigned to match the checkout progress arrow style */}
-                 <div className="mb-12">
-                  <nav aria-label="Checkout Progress" className="breadcrumb-container">
-                   <ol className="breadcrumb-list">
-                    {/* Step 1: Cart (Completed) */}
-                    <li className="breadcrumb-item">
-                     <Link to="/" className="breadcrumb-link">
+            {/* Breadcrumb Section */}
+            <div className="mb-8 sm:mb-10">
+              <nav aria-label="Checkout Progress" className="breadcrumb-container">
+                <ol className="breadcrumb-list">
+                  {/* Step 1: Home (Completed) */}
+                  <li className="breadcrumb-item">
+                    <Link to="/" className="breadcrumb-link">
+                      <CheckCircle className="breadcrumb-icon" />
+                      Home
+                    </Link>
+                  </li>
+                  {/* Step 2: Services (Completed) */}
+                  <li className="breadcrumb-item">
+                    <Link to="/services" className="breadcrumb-link">
                       <CheckCircle className="breadcrumb-icon" />
                       Service
-                     </Link>
-                    </li>
-                    
-                    {/* Step 2: Payment (Current Page) */}
-                    <li className="breadcrumb-item current-page">
-                     <span aria-current="page" className="breadcrumb-link">
-                      <CheckCircle className="breadcrumb-icon" /> {/* The checkmark is present in the image */}
-                      Accounting & Assurance
-                     </span>
-                    </li>
-                   </ol>
-                  </nav>
-              </div>
-            
+                    </Link>
+                  </li>
+                  
+                  {/* Step 3: Current Page */}
+                  <li className="breadcrumb-item current-page">
+                    <span aria-current="page" className="breadcrumb-link">
+                      <CheckCircle className="breadcrumb-icon" />
+                      Auditing & Assurance
+                    </span>
+                  </li>
+                </ol>
+              </nav>
+            </div>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground mb-3 sm:mb-4">
             Auditing & Assurance
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-4xl mx-auto md:mx-0">

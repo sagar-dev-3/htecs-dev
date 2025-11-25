@@ -9,6 +9,7 @@ import AboutOverview from "./pages/AboutOverview";
 import ServiceBrokerage from "./pages/ServiceBrokerage";
 import AuditingAsurance from "./pages/AuditingAssurance";
 import AccountingFinancialServices from "./pages/AccountingFinancialServices";
+import Services from "./pages/Services";
 // using BrowserRouter instead of HashRouter for remove # in URL
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/about" element={<AboutOverview />} />
           <Route path="/about/overview" element={<AboutOverview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/services" element={<Services />} />
           <Route path="/service-brokerage" element={<ServiceBrokerage />} />
           <Route path="/auditing-asurance" element={<AuditingAsurance />} />
            <Route path="/accounting-financial-services" element={<AccountingFinancialServices />} />

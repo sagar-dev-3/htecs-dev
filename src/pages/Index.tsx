@@ -6,187 +6,182 @@ import accountingImage from "@/assets/accounting-desk.jpg";
 import PricingTemplate from "@/components/Pricing";
 import NavItemWithDropdown from "@/components/NavItemWithDropdown";
 
-// ===============================================
-// 2. MAIN INDEX COMPONENT
-// ===============================================
+// MAIN INDEX COMPONENT
 const Index = () => {
-    // Navigation state
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    
-    // Chatbot state
-    const [isChatOpen, setIsChatOpen] = useState(false);
-    const [messages, setMessages] = useState([
-      { role: "bot", text: "Hello! How can I help you today?" }
-    ]);
-    const [inputMessage, setInputMessage] = useState("");
+  // Navigation state
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-    // Handle sending message
-    const handleSendMessage = () => {
-      if (inputMessage.trim()) {
-        setMessages([...messages, { role: "user", text: inputMessage }]);
-        setInputMessage("");
-        
-        // Simulate bot response (you'll connect this to your .NET backend later)
-        setTimeout(() => {
-          setMessages(prev => [...prev, { 
-            role: "bot", 
-            text: "Thanks for your message! Our team will get back to you soon." 
-          }]);
-        }, 1000);
-      }
+  // Chatbot state
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { role: "bot", text: "Hello! How can I help you today?" }
+  ]);
+  const [inputMessage, setInputMessage] = useState("");
+
+  // Handle sending message
+  const handleSendMessage = () => {
+    if (inputMessage.trim()) {
+      setMessages([...messages, { role: "user", text: inputMessage }]);
+      setInputMessage("");
+      
+      // Simulate bot response
+      setTimeout(() => {
+        setMessages(prev => [...prev, { 
+          role: "bot", 
+          text: "Thanks for your message! Our team will get back to you soon." 
+        }]);
+      }, 1000);
+    }
+  };
+
+  // Scroll effect for navigation
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
     };
-  
-    // Scroll effect for navigation
-    useEffect(() => {
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 20);
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-  
-    // Navigation links (Data remains the same)
-    const navLinks = [
-      { href: "services", label: "Services",
-        subMenu: [ // Added subMenu array
-        { href: "/service-brokerage", label: "Service Brokerage" }, // Change # to real paths later
-         { href: "/auditing-asurance", label: "Auditing & Assurance" },
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Navigation links
+  const navLinks = [
+    { 
+      href: "/services", 
+      label: "Services",
+      subMenu: [
+        { href: "/service-brokerage", label: "Service Brokerage" },
+        { href: "/auditing-asurance", label: "Auditing & Assurance" },
         { href: "/accounting-financial-services", label: "Accounting & Financial Services" },
-       
-       ],
-      },
-      { href: "/about", label: "About Us" },
-      { href: "/contact", label: "Contact" },
-    ];
-  
-    // ... (Rest of your component's constants and refs)
-    // Services data
-    const services = [
-        
-        {
-          icon: "🧮",
-          title: "Service brokerage",
-          description: "Service brokerage in mortgage loan rent services property dealings and other project financing.",
-        },
-        {
-          icon: "🛡️",
-          title: "Auditing & Assurance",
-          description: "Independent verification and risk assessment to ensure financial integrity.",
-        },
-        {
-          icon: "📚",
-          title: "Accounting & financial services",
-          description: "Book keeping service tax filing financial reporting Audit services.",
-        },
-        {
-          icon: "📈",
-          title: "General Trading",
-          description: "textiles clothes an accessories.",
-        }
-    ];
+      ],
+    },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
+  ];
 
-    // Stats data
-    const stats = [
-        { value: "500+", label: "Happy Clients" },
-        { value: "15+", label: "Years Experience" },
-        { value: "98%", label: "Client Satisfaction" },
-        { value: "1000+", label: "Projects Completed" },
-    ];
+  // Services data
+  const services = [
+    {
+      icon: "🧮",
+      title: "Service brokerage",
+      description: "Service brokerage in mortgage loan rent services property dealings and other project financing.",
+    },
+    {
+      icon: "🛡️",
+      title: "Auditing & Assurance",
+      description: "Independent verification and risk assessment to ensure financial integrity.",
+    },
+    {
+      icon: "📚",
+      title: "Accounting & financial services",
+      description: "Book keeping service tax filing financial reporting Audit services.",
+    },
+    {
+      icon: "📈",
+      title: "General Trading",
+      description: "textiles clothes an accessories.",
+    }
+  ];
 
-    // Why choose us features
-    const features = [
-        "Certified professionals with extensive experience",
-        "Tailored solutions for your unique needs",
-        "Cutting-edge technology and methodologies",
-        "Transparent pricing with no hidden fees",
-        "24/7 support and consultation",
-        "Proven track record of success",
-    ];
+  // Stats data
+  const stats = [
+    { value: "500+", label: "Happy Clients" },
+    { value: "15+", label: "Years Experience" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "1000+", label: "Projects Completed" },
+  ];
 
-    // Refs for scroll animations
-    const servicesRef = useRef(null);
-    const statsRef = useRef(null);
-    const whyChooseUsRef = useRef(null);
-    const ctaRef = useRef(null);
+  // Why choose us features
+  const features = [
+    "Certified professionals with extensive experience",
+    "Tailored solutions for your unique needs",
+    "Cutting-edge technology and methodologies",
+    "Transparent pricing with no hidden fees",
+    "24/7 support and consultation",
+    "Proven track record of success",
+  ];
 
-    const servicesInView = useInView(servicesRef, { once: true, margin: "-100px" });
-    const statsInView = useInView(statsRef, { once: true });
-    const whyChooseUsInView = useInView(whyChooseUsRef, { once: true, margin: "-100px" });
-    const ctaInView = useInView(ctaRef, { once: true }); 
+  // Refs for scroll animations
+  const servicesRef = useRef(null);
+  const statsRef = useRef(null);
+  const whyChooseUsRef = useRef(null);
+  const ctaRef = useRef(null);
 
-    return (
-        <div className="min-h-screen">
-            {/* Navigation*/}
-            <nav
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                  isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background/95 backdrop-blur-md shadow-lg"
-                }`}
+  const servicesInView = useInView(servicesRef, { once: true, margin: "-100px" });
+  const statsInView = useInView(statsRef, { once: true });
+  const whyChooseUsInView = useInView(whyChooseUsRef, { once: true, margin: "-100px" });
+  const ctaInView = useInView(ctaRef, { once: true }); 
+
+  return (
+    <div className="min-h-screen">
+      {/* Navigation */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-background/95 backdrop-blur-md shadow-lg"
+        }`}
+      >
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex items-center justify-between h-full">
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="HTECS Logo" className="h-[10rem] w-[10rem] object-contain block" />
+              <div className="flex flex-col justify-center">
+                <h1 className="text-2xl font-bold text-foreground leading-tight m-0">
+                  Hill Top Emerging
+                </h1>
+                <p className="text-lg text-muted-foreground m-0">Consultancy Services FZC</p>
+              </div>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8 h-full">
+              {navLinks.map((link) => (
+                <NavItemWithDropdown key={link.href} link={link} isMobile={false} />
+              ))}
+              <button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2 font-medium transition-colors">
+                Get Started
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-                <div className="container mx-auto px-4 h-full">
-                    <div className="flex items-center justify-between h-full">
-                        <div className="flex items-center gap-3">
-                            <img src={logo} alt="HTECS Logo" className="h-[10rem] w-[10rem] object-contain block" />
-                            <div className="flex flex-col justify-center">
-                                <h1 className="text-2xl font-bold text-foreground leading-tight m-0">
-                                    Hill Top Emerging
-                                </h1>
-                                <p className="text-lg text-muted-foreground m-0">Consultancy Services FZC</p>
-                            </div>
-                        </div>
-                        
-                        {/* Desktop Navigation (UPDATED) */}
-                        <div className="hidden md:flex items-center gap-8 h-full">
-                            {navLinks.map((link) => (
-                                <NavItemWithDropdown key={link.href} link={link} isMobile={false} />
-                            ))}
-                            <button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2 font-medium transition-colors">
-                                Get Started
-                            </button>
-                        </div>
-    
-                        {/* Mobile Menu Button */}
-                        <button
-                          className="md:hidden text-foreground"
-                          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        >
-                            {isMobileMenuOpen ? (
-                                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            ) : (
-                                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
-    
-                    {/* Mobile Menu (UPDATED) */}
-                    {isMobileMenuOpen && (
-                        <div className="md:hidden py-2 border-t border-border flex flex-col gap-2">
-                            {navLinks.map((link) => (
-                                <NavItemWithDropdown 
-                                    key={link.href} 
-                                    link={link} 
-                                    isMobile={true} 
-                                    closeMobileMenu={() => setIsMobileMenuOpen(false)} 
-                                />
-                            ))}
-                            <button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2 font-medium transition-colors w-full mt-2">
-                                Get Started
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </nav>
+              {isMobileMenuOpen ? (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-2 border-t border-border flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <NavItemWithDropdown 
+                  key={link.href} 
+                  link={link} 
+                  isMobile={true} 
+                  closeMobileMenu={() => setIsMobileMenuOpen(false)} 
+                />
+              ))}
+              <button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2 font-medium transition-colors w-full mt-2">
+                Get Started
+              </button>
+            </div>
+          )}
+        </div>
+      </nav>
             
-            {/* ... (Rest of your sections: Hero, Services, Stats, CTA, Footer, Chatbot) */}
-            
-             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background to-muted/30 pt-20">
-              <div className="container mx-auto px-4 py-20 lg:py-32">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background to-muted/30 pt-[5rem] sm:pt-[6rem] md:pt-[7rem]">
+        <div className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
                   <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -260,24 +255,24 @@ const Index = () => {
             </section>
 
             {/* Services Section */}
-            <section id="services" className="py-24 bg-muted/30">
-              <div className="container mx-auto px-4">
-                <motion.div
-                  ref={servicesRef}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-16"
-                >
-                  <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-                    Our <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Services</span>
-                  </h2>
-                  <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Comprehensive financial solutions tailored to your business needs
-                  </p>
-                </motion.div>
+      <section id="services" className="py-12 sm:py-16 lg:py-20 bg-muted/30">
+        <div className="container mx-auto px-3 sm:px-4">
+          <motion.div
+            ref={servicesRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10 sm:mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-foreground">
+              Our <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Services</span>
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive financial solutions tailored to your business needs
+            </p>
+          </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {services.map((service, index) => (
                     <motion.div
                       key={index}
@@ -319,46 +314,45 @@ const Index = () => {
               </div>
             </section>
 
-            {/*pricing Section*/}
-            <section id="pricing" className="bg-background">
-              <div className="container mx-auto px-4">
-                <PricingTemplate></PricingTemplate>
-              </div>
-            </section>
+            {/*Pricing Section*/}
+      <section id="pricing" className="bg-background">
+        <div className="container mx-auto px-3 sm:px-4">
+          <PricingTemplate></PricingTemplate>
+        </div>
+      </section>
 
+      {/* CTA Section */}
+      <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary to-accent text-primary-foreground">
+        <div className="container mx-auto px-3 sm:px-4">
+          <motion.div
+            ref={ctaRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-5"
+          >
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl opacity-90">
+              Let's discuss how our expertise can help you achieve your financial goals and drive sustainable growth.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4 sm:pt-6">
+              <button className="rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors font-medium">
+                Schedule Consultation
+              </button>
+              <button className="rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all font-medium">
+                Contact Us
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-            {/* CTA Section */}
-            <section id="contact" className="py-24 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-              <div className="container mx-auto px-4">
-                <motion.div
-                  ref={ctaRef}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center max-w-3xl mx-auto space-y-6"
-                >
-                  <h2 className="text-4xl lg:text-5xl font-bold">
-                    Ready to Transform Your Business?
-                  </h2>
-                  <p className="text-xl opacity-90">
-                    Let's discuss how our expertise can help you achieve your financial goals and drive sustainable growth.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                    <button className="rounded-full px-8 py-3 text-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors font-medium">
-                      Schedule Consultation
-                    </button>
-                    <button className="rounded-full px-8 py-3 text-lg border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all font-medium">
-                      Contact Us
-                    </button>
-                  </div>
-                </motion.div>
-              </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="bg-background border-t border-border py-12">
-              <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-4 gap-8 mb-8">
+      {/* Footer */}
+      <footer className="bg-background border-t border-border py-8 sm:py-10 lg:py-12">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="grid md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <img src={logo} alt="HTECS Logo" className="h-10 w-10" />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom'; // Import Link
+import { useBreadcrumb } from "@/lib/breadcrumb";
 
 interface SubMenuItem {
   href: string;
@@ -21,23 +22,41 @@ interface NavItemWithDropdownProps {
 
 const NavItemWithDropdown = ({ link, isMobile, closeMobileMenu }: NavItemWithDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const breadcrumbCtx = (() => {
+    try {
+      return useBreadcrumb();
+    } catch (e) {
+      return undefined;
+    }
+  })();
 
   const baseClasses = "text-foreground hover:text-primary font-medium transition-colors";
 
-  // Handle links with submenus (like "About Us" for Services, etc.)
+  // Handle links with submenus (like "Services" with dropdown, etc.)
   if (link.subMenu && link.subMenu.length > 0) {
     if (isMobile) {
       return (
         <div className="w-full">
-          <button
-            className={`${baseClasses} w-full text-left py-1 leading-none flex items-center justify-between`}
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            {link.label}
-            <svg className={`w-3 h-3 transition-transform ${showDropdown ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+          <div className="flex items-center justify-between">
+            <Link
+              to={link.href}
+              className={`${baseClasses} flex-1 py-1 leading-none`}
+              onClick={() => {
+                breadcrumbCtx?.setBreadcrumb(link.label);
+                closeMobileMenu?.();
+              }}
+            >
+              {link.label}
+            </Link>
+            <button
+              className="pl-2 text-foreground"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <svg className={`w-3 h-3 transition-transform ${showDropdown ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
           <AnimatePresence>
             {showDropdown && (
               <motion.div
@@ -53,6 +72,8 @@ const NavItemWithDropdown = ({ link, isMobile, closeMobileMenu }: NavItemWithDro
                     to={subItem.href}
                     className="block py-1 text-foreground hover:text-primary transition-colors text-sm"
                     onClick={() => {
+                      const bc = `${link.label} >> ${subItem.label}`;
+                      breadcrumbCtx?.setBreadcrumb(bc);
                       closeMobileMenu?.();
                       setShowDropdown(false);
                     }}
@@ -67,17 +88,19 @@ const NavItemWithDropdown = ({ link, isMobile, closeMobileMenu }: NavItemWithDro
       );
     } else {
       return (
-        <div
-          className="relative flex items-center h-full"
+        <Link
+          to={link.href}
+          className="relative flex items-center h-full group"
           onMouseEnter={() => setShowDropdown(true)}
           onMouseLeave={() => setShowDropdown(false)}
+          onClick={() => breadcrumbCtx?.setBreadcrumb(link.label)}
         >
-          <button className={`${baseClasses} flex items-center gap-1 h-full text-base md:text-lg lg:text-xl leading-none`}>
+          <span className={`${baseClasses} flex items-center gap-1 h-full text-base md:text-lg lg:text-xl leading-none`}>
             {link.label}
             <svg className={`w-3 h-3 transition-transform ${showDropdown ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-          </button>
+          </span>
           <AnimatePresence>
             {showDropdown && (
               <motion.div
@@ -92,7 +115,11 @@ const NavItemWithDropdown = ({ link, isMobile, closeMobileMenu }: NavItemWithDro
                     key={subItem.href}
                     to={subItem.href}
                     className="block px-4 py-2 text-sm text-foreground hover:bg-muted/50 transition-colors"
-                    onClick={() => setShowDropdown(false)}
+                    onClick={() => {
+                      const bc = `${link.label} >> ${subItem.label}`;
+                      breadcrumbCtx?.setBreadcrumb(bc);
+                      setShowDropdown(false);
+                    }}
                   >
                     {subItem.label}
                   </Link>
@@ -100,7 +127,7 @@ const NavItemWithDropdown = ({ link, isMobile, closeMobileMenu }: NavItemWithDro
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </Link>
       );
     }
   }

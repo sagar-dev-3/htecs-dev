@@ -9,8 +9,16 @@
 }
 
 .breadcrumb-container {
-    padding: 10px 0;
+    padding: 6px 0;
     display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (min-width: 640px) {
+    .breadcrumb-container {
+        padding: 10px 0;
+    }
 }
 
 .breadcrumb-list {
@@ -18,21 +26,33 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
+    gap: 0;
 }
 
 .breadcrumb-item {
     position: relative;
     display: flex;
     align-items: center;
-    /* Adjusted padding to accommodate the smaller, cleaner cutout */
-    padding: 10px 20px 10px calc(20px + var(--arrow-cutout-width)); 
+    /* Mobile: Reduced padding */
+    padding: 8px 12px 8px calc(12px + var(--arrow-cutout-width)); 
     background-color: var(--step-color);
     /* Adjusted margin to match the cutout width */
     margin-right: calc(-1 * var(--arrow-cutout-width)); 
     color: var(--text-color);
-    font-size: 1rem;
+    /* Mobile: Smaller font */
+    font-size: 0.875rem;
     font-weight: 500;
     white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+    .breadcrumb-item {
+        /* Tablet and up: Original padding */
+        padding: 10px 20px 10px calc(20px + var(--arrow-cutout-width));
+        /* Tablet and up: Original font size */
+        font-size: 1rem;
+    }
 }
 
 /* Arrowhead on the right */
@@ -67,8 +87,15 @@
 .breadcrumb-item:last-child {
     /* Set margin-right to 0 */
     margin-right: 0; 
-    /* Add padding to the right equal to the arrowhead's width */
-    padding-right: calc(20px + var(--arrow-cutout-width)); 
+    /* Mobile: Reduced right padding */
+    padding-right: calc(12px + var(--arrow-cutout-width)); 
+}
+
+@media (min-width: 640px) {
+    .breadcrumb-item:last-child {
+        /* Tablet and up: Original right padding */
+        padding-right: calc(20px + var(--arrow-cutout-width)); 
+    }
 }
 
 /* 1. Styling for Completed Steps (using the base step-color) */
@@ -90,13 +117,31 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px; /* Spacing between icon and text */
+    /* Mobile: Reduced gap */
+    gap: 4px;
     position: relative;
     z-index: 3; 
 }
 
+@media (min-width: 640px) {
+    .breadcrumb-link {
+        /* Tablet and up: Original gap */
+        gap: 8px;
+    }
+}
+
 /* Icon (Checkmark) styling */
 .breadcrumb-icon {
-    width: 18px;
-    height: 18px;
+    /* Mobile: Smaller icon */
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+    .breadcrumb-icon {
+        /* Tablet and up: Original size */
+        width: 18px;
+        height: 18px;
+    }
 }
